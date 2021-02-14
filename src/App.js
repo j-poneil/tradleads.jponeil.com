@@ -8,6 +8,7 @@ import {
   Link
 } from "react-router-dom";
 
+import { Home } from './routes/Home'; 
 import { About } from './routes/About';
 import { List } from './routes/List';
 import { Graph } from './routes/Graph';
@@ -31,27 +32,13 @@ function App() {
       </nav>
 
       <Switch>
-        <Route exact path="/about">
-          <About />
-        </Route>
-        <Route path="/list">
-          <List />
-        </Route>
-        <Route path="/graph">
-          <Graph />
-        </Route>
-        <Route path="/gallery">
-          <Gallery />
-        </Route>
-        <Route path="/amga-progress">
-          <Progress />
-        </Route>
-        {/* <Route path="/about">
-          <About />
-        </Route> */}
-        <Route path="*">
-          <Error404 />
-        </Route>
+        <Route exact path="/" component={ Home }/>
+        <Route exact path="/about" component={ About } />
+        <Route exact path="/list" component={ List } />
+        <Route exact path="/graph" component={ Graph } />
+        <Route exact path="/gallery" component={ Gallery } />
+        <Route exact path="/amga-progress" component={ Progress } />
+        <Route component={ Error404 } />
       </Switch>
     </BrowserRouter>
   );
