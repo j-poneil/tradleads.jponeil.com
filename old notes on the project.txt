@@ -1,0 +1,123 @@
+Spell check...
+
+I wanted to do a project involving SQL and either PHP or Node.js.
+
+
+
+I exported the spreadsheet as a .csv file
+Imported it into the SQL server (first value in each column becoming table headings)
+Connected to the database/table with PHP making sure that the SQL queries were hardcoded in, not open to SQL injection
+
+Initially I played around with css only accordions, bootstrap accordions, bootstrap grid system, etc but things wouldn't display as I wanted them so I did some searching for different accordion systems.
+
+Foundation 6 Framework looked to have everything I needed, so I re-configured the project with it.
+
+I also cut down from multiple PHP pages, one for each query to a single more compact page that is more easily maintainable.
+
+All of the graph aside from the initial <table> element is echoed out using PHP. At first I had issues with the table column widths being automatically sized poorly, so I combined a few (with PHP) where it was logical to do so as well as setting some to 'white-space: nowrap' to prevent the text from wrapping around to new lines...
+
+As well Foundation 6 being a great responsive framework resizes and can re-organize things for different screen sizes. That being the case, its nice to have a nice long table with a header for larger sizes, but it doesn't work well for small screens, so I eliminated the header and for the smaller screens combine even more of the data (with PHP) before displaying it.
+
+Even with an extra large screen size it would appear that I only have 6 columns, however in my spreadsheet and in the SQL server there is actually 12.
+
+Rock climbing route difficulty grading presented a particular problem for sorting. In the US we use the Yosemite Decimal System (YDS). It is a number from 1-4 from flat ground trail to steep but not too hard mountainside. Sometimes you will hear easy terrain that you don't typically need to rope up for and only need to use your hands ocassionally as 3rd class, 4th class, 5th class, etc... Once you reach 5 you add on a decimal after it and there is an equal jump in difficulty between the numbers after it 5.0 - 5.9... For comparison 5.4 or 5.5 is typically the very easiest rock climbing routes in an indoor gym. At one point 5.9 was the highest the scale went and it just encompased everything hard without providing particularly useful information on how hard. Then people decided to continue the scale 5.10a, 5.10b, 5.10c, 5.10d, then 5.11a, and so on... the difficulty jump between 5.8 and 5.9 is supposed to be equal to the difficulty jump betwen 5.10a and 5.10b, so you can quickly see that the difficulty starts to increase very quickly. Most gym climbers have climbed a 5.11a within 2-3 years if they are climbing a few times per month. After 3-5 years some have continued and gotten a 5.12a, its uncommon to progress much beyond that. Currently the hardest route in the world is somewhere around 5.15c. Very overhanging, very strenuous moves, very small holds.
+
+YDS specifies the difficulty, but to fine tune it or give it a bit of a range people will use +/-, hard/soft...
+Such as 5.6+ being harder than other 5.6's but not quite a 5.7. 5.10+ being a 5.10c/d, but not sure which. As many routes can be more difficult based on height and hand size specifiying a range is pretty acceptable.
+As well, YDS doesn't specify danger rating, so there are other things you can tack on for that, such as:
+PG13, R, R/X, X ... PG13 being some increased risk of injury, usually in a small section of the route, R typically meaning run-out -- a long distance between protection placements leading to longer and more dangerous potential falls, R/X meaning chance of death without a highly attentive belayer, X typically meaning unprotectable, if you fall you could very well die.
+Course, its rock climbing, an inherently risky and dangerous activity...
+As well, there is "grade" which typically refers to how long and commiting a route is. GI-II is just a few pitchs close to the car, GIII could take the better part of a day with car-to-car time consideration, GIV almost certain will take a pre-dawn start hours of hiking and unforseen delays or difficulties can easily lead to an unplanned bivi (sleeping/sheltering on the climb or on the summit). GV is typically multi-day for all but the elite few. GVI multi-day adventure, like summiting multiple peaks with miles of total technical climbing. VII is under discussion.
+
+Most single pitch climbing would be grade I, but in most cases people don't even mention grade unless it is grade III or higher.
+
+Cool. But how do I sort that?
+In my spreadsheet the data is entered like 5.6, 5.8, 5.8-, 5.7+, 5.6PG13, etc... Trying to sort from smallest to larger I would want to get 5.4, 5.5, 5.7, etc.. up to 5.10, 5.11...
+That isn't what you get though through an SQL sort query... you get 5.10, 5.11, 5.4, 5.5, 5.8, etc... it sees it as a decimal number.
+
+So, I made a second column in the spreadsheet and used an equation to simply cut off the first digit and decimal place. IE 5.9 = 9, 5.11a = 11a, etc...
+With the plan to sort by that column, but return the data from the un-modified column.
+... Its still not working. Yet.
+OH.. just changed the modified column data type in the SQL DB to "tinyint" working perfectly now...
+
+Decided to try out Google Charts.
+
+Explination of trad vs. sport vs. bouldering?
+
+I need to keep a log of my trad leads as somewhat of a resume necessary for guiding jobs as well meeting prerequisite conditions for AMGA classes and exams
+My progress on these requirements is currently visible in the "Certification Progress" accordion panel.
+The sub-columns in this panel will stack on small screens though I may add dividers or change background-color of them.
+Because the requirements are somewhat complex for some of these, I don't have an automatic mechanism to count them up.
+
+
+I try to get as much data as possible from the SQL server, so I can just delete the table, import the latest spreadsheet from my home machine, and the site will still work the same as long as I don't change the titles of the existing columns.
+
+
+Making the buttons toggle the sort was done in javascript before calling the PHP...
+The buttons simply have for example, onclick=getTable('area'); where getTable() is a JS function and 'area' is a string matching hardcoded strings in a switch statement.
+A second click of the same button would request the same table, but we want the 2nd click to reverse sort, so that is done in javascript taking account of if a button had been clicked previously...
+while also making sure that clicking a new button would do the default sort of the new button, not its reverse sort... difficult to explain... it works how I want it to work.
+Then it passes what it determines to be the appropriate hard coded string to getTable.php.
+getTable.php will get exactly what it is told to... from a limited list of valid input. A switch statement. This should be sufficient to protect against SQL injection.
+getTable.php echos out the table head with classes to show certain versions of the head based on different screen sizes.
+getTable.php does the same for the table body, echoing out versions of the body formatted for different screen sizes, the small sizes being more combined, compressed, and actually vertically stacked.
+
+
+
+
+I'd love if I could put a scroll bar on the trad lead table accordion panel...
+But thus far all attempts are thwarted by the Foundation framework.
+If I had set this up to build from SASS... I could have probably fixed this easily... but trying to over-ride and allow it without doing so... isn't working out great.
+Especially on smaller screens its kinda rediculous to have to scroll all the way down through the leads before seeing the next accordion title/panel thing...
+
+
+
+Getting the data from the SQL server into PHP, then into javascript objects/arrays to use in the graphs may be tricky...
+For now just hard coded the data I received from SQL queries into the javascript...
+that is I queried the database and copy/pasted the relevant results into an array that the google charts can use...
+
+As for google charts... geez. Its very easy to get good looking tables set up... but because you have to hard code the size of them in pixels... trying to get them to be responsive has been a major pain.
+
+Best I have been able to do so far is find a width that seems to work OK for putting in columns where I make sure that no more than ___ columns will be in a single row before wrapping below...
+This has kinda worked. Just making sure that the smallest width my browser window will do still produces a good looking chart, and then as the window gets wider allow more columns next to each other.
+
+ALSO
+Its kinda a pain trying to get the text on the charts displayed correctly. It cuts off the labels, key, doesn't position text inside the charts well--cutting it off, etc...
+Think I found a way to fix it. Maybe.
+
+Well... may have found another option for allowing charts to work better... at least as far as being resizeable and not cutting off label, key, etc... but you would lose interactivity completely...
+You just turn it into a PNG! - Data URI !
+https://developers.google.com/chart/interactive/docs/printing
+Don't think I'll do it here as I like the mouseover being able to show what things are in some cases rather than having a key to the side.
+If I do: legend: {position: 'labeled'},
+Then I get the info I'd get from mouseover anyways... mostly... so thats an option...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
