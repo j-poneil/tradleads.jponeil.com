@@ -8,13 +8,13 @@ import {
   Link
 } from "react-router-dom";
 
-import { About } from '';
-import { List } from '';
-import { Graph } from '';
-import { Gallery } from '';
-import { Progress } from '';
-import { Error404 } from '';
-// import { About } from '';
+import { About } from './routes/About';
+import { List } from './routes/List';
+import { Graph } from './routes/Graph';
+import { Gallery } from './routes/Gallery';
+import { Progress } from './routes/Progress';
+import { Error404 } from './routes/Error404';
+// import { About } from './routes/[...]';
 
 function App() {
   return (
