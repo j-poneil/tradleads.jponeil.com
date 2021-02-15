@@ -1,4 +1,5 @@
 When deploying make sure to remember to do:
+swap testJSON data in List.js for the real data retrieved from SQL Database w/PHP
 npm run build
 copy/paste the build files to the server
 THEN
