@@ -1,0 +1,7 @@
+When deploying make sure to remember to do:
+npm run build
+copy/paste the build files to the server
+THEN
+make sure to copy the needed php files over
+...
+then it should work!
