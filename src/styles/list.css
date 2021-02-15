@@ -1,0 +1,19 @@
+/* 
+Quick and dirty styles. Ugly on purpose to make sure I change them later.
+*/
+table {
+    border-collapse: collapse;
+    
+}
+
+td, th {
+    vertical-align: top;
+    border: 1px solid black;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+tr:nth-child(even){
+    background-color: #ececec;
+}
+
