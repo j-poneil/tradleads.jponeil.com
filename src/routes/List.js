@@ -29,6 +29,8 @@ TODO -- I think i might know how to tackle the issue with the PHP
 'whatever.map is not a function' keeps popping up, so maybe it tries to run before 'whatever' is an array...
 SO... maybe I should do this mapping inside the GET request response... then it is definitely an array, if successful...
 I say 'whatever' because it gets a random variable name like 'c' once its production bundled
+! Part of the problem was with useEffect, I had whichTable and listOfLeads as dependencies...
+... so obviously listOfLeads was messing that part up.
 
 
 
@@ -70,7 +72,7 @@ export const List = () => {
     }];
 
 
-    const [ listOfLeads, setListOfLeads ] = useState(firstData);
+    const [ listOfLeads, setListOfLeads ] = useState('');
     const [ whichTable, setWhichTable ] = useState('default');
     const [ caption, setCaption ] = useState('List of my trad leads sorted by oldest first');
 
@@ -91,7 +93,7 @@ export const List = () => {
             //this.responseText will be json_encode($result)
             // setListOfLeads(this.responseText);
             temp = this.responseText;
-            setListOfLeads(...this.responseText);
+            setListOfLeads(this.responseText);
         };
         // true... true here makes it so that it doesn't block the rest of the execution
         // oReq.open("get", "../../getJSONtable.php?q=" + whichTable, true);
@@ -141,7 +143,9 @@ export const List = () => {
         return () => {
             //cleanup
         }
-    }, [ whichTable, listOfLeads ]);
+    }, [ whichTable ]);
+
+
 
     const sortTable = (howToSort) => {
         switch(howToSort){
@@ -238,31 +242,8 @@ export const List = () => {
                 </tr>
             </thead>
             <tbody>
-                { console.log('listOfLeads:', listOfLeads) }
-                { console.log('typeof listOfLeads', typeof listOfLeads) }
-                { console.log('temp', temp) }
-                { console.log('typeof temp', typeof temp)}
                 {
                     // ! Swap testJSON for listOfLeads before deploy
-                    // listOfLeads.map( (route, index) => {
-                    //     return (
-                    //         <tr key={ route['#'] } >
-                    //             <th scope='row'>{ route['#'] }</th>
-                    //             <td>{ route['date'] }</td>
-                    //             <td>{ route['name'] }</td>
-                    //             <td>{ route['difficulty'] }</td>
-                    //             <td>{ route['diff_sort'] }</td>
-                    //             <td>{ route['pitches'] }</td>
-                    //             <td>{ route['grade'] }</td>
-                    //             <td>{ route['area'] }</td>
-                    //             <td>{ route['rock'] }</td>
-                    //             <td>{ route['partner'] }</td>
-                    //             <td>{ route['on_mp'] }</td>
-                    //             <td><a href={ route['link'] }>Link</a></td>
-                    //             <td>{ route['notes'] }</td>
-                    //         </tr>
-                    //     )
-                    // })
                     listOfLeads.map( (route, index) => {
                         return (
                             <tr key={ route['#'] } >
@@ -283,6 +264,7 @@ export const List = () => {
                         )
                     })
                 }
+                {/* { listOfLeads !== '' ? listOfLeads : 'loading...'} */}
             </tbody>
         </table>
     );
