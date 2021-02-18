@@ -17,6 +17,12 @@ import { Progress } from './routes/Progress';
 import { Error404 } from './routes/Error404';
 // import { About } from './routes/[...]';
 
+/*
+TODO - Fix routing
+... if I try to go directly to tradleads.jponeil.com/list without doing so from / it gives 404
+TODO - Replace the ugly CSS that I initially used on purpose, maybe do that after I have worked on the other routes/pages/components first
+*/
+
 function App() {
   return (
     <BrowserRouter>

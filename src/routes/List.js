@@ -2,35 +2,23 @@ import React, { useState, useEffect } from 'react';
 import '../styles/list.css'
 
 /*
-! Won't see any of the SQL data in live reload dev env because it doesn't run any of the PHP code...
-... or so I thought?
+* The problem I was having, well, the main problem... is that the data I get back from the GET request to the PHP to the SQL server... ends up on this.responseText... AS A STRING. All I needed to do was wrap it with JSON.parse()
+... .map wasn't working on it, because it was a string!
+* Another problem was with useEffect I set whichTable and listOfLeads as dependencies...
+... when it should re-render only when whichTable changes
+TODO - CSS - Cursor change / color on mouse over on sortable table headers
+// TODO - some change on hover on table rows
+TODO - CSS - Make the table caption more prominant
+TODO - SQL/PHP - Fully implement the sorting on things it makes sense to do so on (new SQL queries, associated switch statements)
+// TODO - Make links open a new tab
+TODO - CSS/JSX - Make table header stay at top of screen while the rest of the table scrolls down
+// TODO - Date nowrap
+TODO - JSX - Don't show diff_sort
+TODO - JSX - remove on_mp, change link th to MP ?... if it has a link its on MP, period
+TODO - Google Sheets/SQL - update list on SQL server so more data to work with...
 
-! - Path to the php must be the same... hmm... I'm kinda assuming that the build process fixes it... but does it actually?
-
-TODO - Table sorting...
-    Previously how I was just querying the SQL DB and returning the results is by far the least code to write
-
-    Sorting with JS is complicated. Seems like may cause a ton of re-renders if I'm not careful
-        https://www.w3schools.com/howto/howto_js_sort_table.asp
-TODO - Cursor change / color on mouse over on sortable table headers
-TODO - Up/Down arrow symbol on sortable table headers
-
-! Test mode
-import testJSON
-swap listOfLeads for testJSON for what to map over
-! Real mode
-comment out -- import testJSON from JSONtableExample
-swamp testJSON for listOfLeads for what to map over
-! BOTH -- look at the actual get request, and setListOfLeads stuff
-
-
-
-TODO -- I think i might know how to tackle the issue with the PHP
-'whatever.map is not a function' keeps popping up, so maybe it tries to run before 'whatever' is an array...
-SO... maybe I should do this mapping inside the GET request response... then it is definitely an array, if successful...
-I say 'whatever' because it gets a random variable name like 'c' once its production bundled
-! Part of the problem was with useEffect, I had whichTable and listOfLeads as dependencies...
-... so obviously listOfLeads was messing that part up.
+! Out there
+TODO - CSS/JSX - Click on a table row to get a pop up modal and darken/blur the background, All text larger and more readable, more digestable formatting, maybe even some pictures if they exist. If I do something like this, should probably have a "has pics" symbol or something in the table
 
 
 
@@ -39,82 +27,28 @@ I say 'whatever' because it gets a random variable name like 'c' once its produc
 // import { testJSON }  from './JSONtableExample';
 
 export const List = () => {
-    // first state will start with an example route?
-    const firstData = [{
-        "#": "1",
-        "date": "2013-04-02",
-        "name": "Peaches",
-        "difficulty": "5.6",
-        "diff_sort": "6",
-        "pitches": "1",
-        "grade": "1",
-        "area": "NV> RR> Willow Spring> Children's Crag",
-        "rock": "Sandstone",
-        "partner": "Ward Opfer",
-        "on_mp": "yes",
-        "link": "http://www.mountainproject.com/v/peaches/105732950",
-        "notes": "First Trad lead, easy climbing. I traversed to the right late. Need 70m or doubles to rap?"
-    },
-    {
-        "#": "2",
-        "date": "2013-04-02",
-        "name": "Peaches",
-        "difficulty": "5.6",
-        "diff_sort": "6",
-        "pitches": "1",
-        "grade": "1",
-        "area": "NV> RR> Willow Spring> Children's Crag",
-        "rock": "Sandstone",
-        "partner": "Ward Opfer",
-        "on_mp": "yes",
-        "link": "http://www.mountainproject.com/v/peaches/105732950",
-        "notes": "First Trad lead, easy climbing. I traversed to the right late. Need 70m or doubles to rap?"
-    }];
-
-
     const [ listOfLeads, setListOfLeads ] = useState('');
     const [ whichTable, setWhichTable ] = useState('default');
     const [ caption, setCaption ] = useState('List of my trad leads sorted by oldest first');
 
-    let temp;
-
     useEffect(() => {
         //effect
-
-        // getJSONtable.php options
-        // 'default', 'default_rev', 'pitches', 'pitches_rev', 'area', 'area_rev', 'difficulty', 'difficulty_rev', 'other'
-        // name, grade, grade_rev -- other possible good options to sort by
 
         //  This works for getting SQL Query result via PHP, returning as JSON, and updating DOM
         let oReq = new XMLHttpRequest(); //New request object
 		oReq.onload = function(){
-            //This is where you handle what to do with the response.
-            //The actual data is found on this.responseText
+            //This is where you handle what to do with the response. The actual data is found on this.responseText
             //this.responseText will be json_encode($result)
             // setListOfLeads(this.responseText);
-            temp = this.responseText;
-            setListOfLeads(this.responseText);
+            // console.log(typeof this.responseText);
+            // typeof string !!! A-Ha! lets try to use JSON.parse() on it...
+            // console.log(typeof JSON.parse(this.responseText));
+            setListOfLeads(JSON.parse(this.responseText));
         };
         // true... true here makes it so that it doesn't block the rest of the execution
         // oReq.open("get", "../../getJSONtable.php?q=" + whichTable, true);
         oReq.open("get", "getJSONtable.php?q=" + whichTable, true);
         oReq.send();
-
-
-        // copy/pasted from chrome
-        // fetch("http://tradleads.jponeil.com/getJSONtable.php?q=default", {
-        //     "headers": {
-        //         "accept": "*/*",
-        //         "accept-language": "en-US,en;q=0.9"
-        //     },
-        //     "referrer": "http://tradleads.jponeil.com/list",
-        //     "referrerPolicy": "strict-origin-when-cross-origin",
-        //     "body": null,
-        //     "method": "GET",
-        //     "mode": "cors",
-        //     "credentials": "omit"
-        // });
-
 
 
         // using fetch
@@ -146,6 +80,9 @@ export const List = () => {
     }, [ whichTable ]);
 
 
+    const upArrow = '\u2191';
+    const downArrow = '\u2193';
+    const revArrow = '\u21C5';
 
     const sortTable = (howToSort) => {
         switch(howToSort){
@@ -226,14 +163,14 @@ export const List = () => {
                     <th scope='col' >link</th>
                     <th scope='col' >notes</th> */}
 
-                    <th scope='col' onClick={() => sortTable( whichTable === 'default' ? 'default_rev' : 'default' )} >#</th>
-                    <th scope='col' onClick={() => sortTable( whichTable === 'default' ? 'default_rev' : 'default' )} >date</th>
-                    <th scope='col' onClick={() => sortTable('name')} >name</th>
-                    <th scope='col' onClick={() => sortTable( whichTable === 'difficulty' ? 'difficulty_rev' : 'difficulty' )} >difficulty</th>
-                    <th scope='col' onClick={() => sortTable( whichTable === 'difficulty' ? 'difficulty_rev' : 'difficulty' )} >diff_sort</th>
-                    <th scope='col' onClick={() => sortTable( whichTable === 'pitches' ? 'pitches_rev' : 'pitches' )} >pitches</th>
-                    <th scope='col' onClick={() => sortTable( whichTable === 'grade' ? 'grade_rev' : 'grade' )} >grade</th>
-                    <th scope='col' onClick={() => sortTable( whichTable === 'area' ? 'area_rev' : 'area' )} >area</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'default' ? 'default_rev' : 'default' )} >{'# ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'default' ? 'default_rev' : 'default' )} >{'date ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable('name')} >{'name ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'difficulty' ? 'difficulty_rev' : 'difficulty' )} >{'difficulty ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'difficulty' ? 'difficulty_rev' : 'difficulty' )} >{'diff_sort ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'pitches' ? 'pitches_rev' : 'pitches' )} >{'pitches ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'grade' ? 'grade_rev' : 'grade' )} >{'grade ' + revArrow}</th>
+                    <th scope='col' onClick={() => sortTable( whichTable === 'area' ? 'area_rev' : 'area' )} >{'area ' + revArrow}</th>
                     <th scope='col' >rock</th>
                     <th scope='col' >partner</th>
                     <th scope='col' >on_mp</th>
@@ -244,12 +181,37 @@ export const List = () => {
             <tbody>
                 {
                     // ! Swap testJSON for listOfLeads before deploy
-                    listOfLeads.map( (route, index) => {
-                        return (
+                    // listOfLeads.map( (route, index) => {
+                    //     return (
+                    //         <tr key={ route['#'] } >
+                    //             <th scope='row'>{ route['#'] }</th>
+                    //             <td>{ route['date'] }</td>
+                    //             <td>{ route['name'] }</td>
+                    //             <td>{ route['difficulty'] }</td>
+                    //             <td>{ route['diff_sort'] }</td>
+                    //             <td>{ route['pitches'] }</td>
+                    //             <td>{ route['grade'] }</td>
+                    //             <td>{ route['area'] }</td>
+                    //             <td>{ route['rock'] }</td>
+                    //             <td>{ route['partner'] }</td>
+                    //             <td>{ route['on_mp'] }</td>
+                    //             <td><a href={ route['link'] }>Link</a></td>
+                    //             <td>{ route['notes'] }</td>
+                    //         </tr>
+                    //     )
+                    // })
+                }
+                {/* { listOfLeads !== ''
+                    ? listOfLeads
+                    : 'loading...'} */}
+                {/* target='_blank' w/o rel='noreferrer' is a security risk, so don't do it */}
+                {
+                    listOfLeads !== ''
+                        ? listOfLeads.map( (route, index) => (
                             <tr key={ route['#'] } >
                                 <th scope='row'>{ route['#'] }</th>
-                                <td>{ route['date'] }</td>
-                                <td>{ route['name'] }</td>
+                                <td style={{whiteSpace: 'nowrap'}}>{ route['date'] }</td>
+                                <td style={{whiteSpace: 'nowrap'}}>{ route['name'] }</td>
                                 <td>{ route['difficulty'] }</td>
                                 <td>{ route['diff_sort'] }</td>
                                 <td>{ route['pitches'] }</td>
@@ -258,13 +220,12 @@ export const List = () => {
                                 <td>{ route['rock'] }</td>
                                 <td>{ route['partner'] }</td>
                                 <td>{ route['on_mp'] }</td>
-                                <td><a href={ route['link'] }>Link</a></td>
+                                <td><a target="_blank" rel="noreferrer" href={ route['link'] }>Link</a></td>
                                 <td>{ route['notes'] }</td>
                             </tr>
-                        )
-                    })
+                        ))
+                        : 'loading...'
                 }
-                {/* { listOfLeads !== '' ? listOfLeads : 'loading...'} */}
             </tbody>
         </table>
     );

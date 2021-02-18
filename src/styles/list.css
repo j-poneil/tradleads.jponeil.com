@@ -1,9 +1,10 @@
-/* 
-Quick and dirty styles. Ugly on purpose to make sure I change them later.
-*/
 table {
     border-collapse: collapse;
     
+}
+
+th {
+    white-space: nowrap;
 }
 
 td, th {
@@ -13,7 +14,14 @@ td, th {
     text-align: left;
 }
 
-tr:nth-child(even){
+tr {
+    transition: 0.4s;
+}
+
+tr:nth-child(odd) {
     background-color: #ececec;
 }
 
+tr:hover {
+    background-color: #c7c7c7;
+}
