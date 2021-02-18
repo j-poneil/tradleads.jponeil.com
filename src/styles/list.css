@@ -3,6 +3,10 @@ table {
     
 }
 
+caption {
+    /*  */
+}
+
 th {
     white-space: nowrap;
 }

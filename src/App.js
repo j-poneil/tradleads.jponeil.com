@@ -21,6 +21,16 @@ import { Error404 } from './routes/Error404';
 TODO - Fix routing
 ... if I try to go directly to tradleads.jponeil.com/list without doing so from / it gives 404
 TODO - Replace the ugly CSS that I initially used on purpose, maybe do that after I have worked on the other routes/pages/components first
+
+TODO - Add Google Charts
+  TODO - Experiment with other charts...
+  D3.js
+    C3.js - supposed to abstract away a few things to make it easier? huh
+  Sigma JS
+  https://gionkunz.github.io/chartist-js/
+
+
+TODO - MAKE EVERTYHING RESPONSIVE, EVERYTHING. Within reason.
 */
 
 function App() {

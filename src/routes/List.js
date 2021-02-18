@@ -6,9 +6,10 @@ import '../styles/list.css'
 ... .map wasn't working on it, because it was a string!
 * Another problem was with useEffect I set whichTable and listOfLeads as dependencies...
 ... when it should re-render only when whichTable changes
-TODO - CSS - Cursor change / color on mouse over on sortable table headers
+
 // TODO - some change on hover on table rows
 TODO - CSS - Make the table caption more prominant
+    ... temp fix max it a H3
 TODO - SQL/PHP - Fully implement the sorting on things it makes sense to do so on (new SQL queries, associated switch statements)
 // TODO - Make links open a new tab
 TODO - CSS/JSX - Make table header stay at top of screen while the rest of the table scrolls down
@@ -146,7 +147,7 @@ export const List = () => {
 
     const completeTable = (
         <table>
-            <caption>{ caption }</caption>
+            <caption><h3>{ caption }</h3></caption>
             <thead>
                 <tr>
                     {/* <th scope='col' >#</th>
