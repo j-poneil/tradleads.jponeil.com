@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import { Home } from './routes/Home'; 
-import { About } from './routes/About';
+// import { About } from './routes/About';
 import { List } from './routes/List';
 import { Graph } from './routes/Graph';
 import { Gallery } from './routes/Gallery';
@@ -39,7 +39,7 @@ function App() {
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
+          {/* <li><Link to="/about">About</Link></li> */}
           <li><Link to="/list">List</Link></li>
           <li><Link to="/graph">Graph</Link></li>
           <li><Link to="/gallery">Gallery</Link></li>
@@ -49,7 +49,7 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={ Home }/>
-        <Route exact path="/about" component={ About } />
+        {/* <Route exact path="/about" component={ About } /> */}
         <Route exact path="/list" component={ List } />
         <Route exact path="/graph" component={ Graph } />
         <Route exact path="/gallery" component={ Gallery } />
