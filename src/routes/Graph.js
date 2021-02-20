@@ -7,9 +7,16 @@ import { Chart } from "react-google-charts";
 export const Graph = () => {
     /*
     TODO - It would be nice to use the google charts since I already kinda have the skeleton of them...
-        but kinda think it may be better to just use D3 or C3
+        but kinda think it may be better to just use D3 or C3, they are probably closer to responsive
         I'll use this react-google-charts for now, just a wrapper for Google Charts so it plays (better) with React.
     TODO - Data for charts coming from the DB instead of hard coded.
+    TODO - Optional feature is getting the data from public facing google spreadsheets...
+        Since this is how I use it already, it makes a lot of sense to do it this way
+        spreadSheetUrl="https://docs.google.com/..."
+        spreadSheetQueryParameters={{
+            headers: 1,
+            query: 'SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8',
+        }}
 
     ! ------------------
     copy pasted in google charts stuff from OLD app.js
