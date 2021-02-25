@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 import {
   BrowserRouter,
@@ -6,6 +6,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+import 'normalize.css';
+import { device } from './breakpoints/breakpoints';
+
 
 import { Home } from './routes/Home'; 
 import { About } from './routes/About';
@@ -17,6 +21,7 @@ import { Error404 } from './routes/Error404';
 // import { About } from './routes/[...]';
 
 import { NavMenu } from './components/NavMenu';
+import { NavMenuItem } from './components/NavMenuItem';
 
 /*
 TODO - Fix routing
@@ -47,7 +52,14 @@ function App() {
           <li><Link to="/amga-progress">AMGA Progress</Link></li>
         </ul>
       </nav> */}
-      <NavMenu />
+      <NavMenu>
+        <NavMenuItem><Link to="/">Home</Link></NavMenuItem>
+        <NavMenuItem><Link to="/about">About</Link></NavMenuItem>
+        <NavMenuItem><Link to="/list">List</Link></NavMenuItem>
+        <NavMenuItem><Link to="/graph">Graph</Link></NavMenuItem>
+        <NavMenuItem><Link to="/gallery">Gallery</Link></NavMenuItem>
+        <NavMenuItem><Link to="/amga-progress">AMGA Progress</Link></NavMenuItem>
+      </NavMenu>
 
       <Switch>
         <Route exact path="/" component={ Home }/>
