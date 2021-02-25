@@ -4,7 +4,6 @@ export const Gallery = () => {
     return (
         /*
         ! ------- old photos
-        <!-- <div class="column"><img src="http://placehold.it/300x300" class="thumbnail" alt=""></div> 16 of these previously-->
         <!-- EMMET CODE - div.column*36>img.thumbnail[src="img/photos/$$@00.jpg"] -->
         <div class="column"><img src="img/photos/00.jpg" alt="" class="thumbnail"></div>
         <div class="column"><img src="img/photos/01.jpg" alt="" class="thumbnail"></div>

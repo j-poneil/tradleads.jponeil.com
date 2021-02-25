@@ -1,5 +1,4 @@
 
-import './styles/App.css';
 
 import {
   BrowserRouter,
@@ -9,13 +8,15 @@ import {
 } from "react-router-dom";
 
 import { Home } from './routes/Home'; 
-// import { About } from './routes/About';
+import { About } from './routes/About';
 import { List } from './routes/List';
 import { Graph } from './routes/Graph';
 import { Gallery } from './routes/Gallery';
 import { Progress } from './routes/Progress';
 import { Error404 } from './routes/Error404';
 // import { About } from './routes/[...]';
+
+import { NavMenu } from './components/NavMenu';
 
 /*
 TODO - Fix routing
@@ -36,20 +37,21 @@ TODO - MAKE EVERTYHING RESPONSIVE, EVERYTHING. Within reason.
 function App() {
   return (
     <BrowserRouter>
-      <nav>
+      {/* <nav>
         <ul>
           <li><Link to="/">Home</Link></li>
-          {/* <li><Link to="/about">About</Link></li> */}
+          <li><Link to="/about">About</Link></li>
           <li><Link to="/list">List</Link></li>
           <li><Link to="/graph">Graph</Link></li>
           <li><Link to="/gallery">Gallery</Link></li>
           <li><Link to="/amga-progress">AMGA Progress</Link></li>
         </ul>
-      </nav>
+      </nav> */}
+      <NavMenu />
 
       <Switch>
         <Route exact path="/" component={ Home }/>
-        {/* <Route exact path="/about" component={ About } /> */}
+        <Route exact path="/about" component={ About } />
         <Route exact path="/list" component={ List } />
         <Route exact path="/graph" component={ Graph } />
         <Route exact path="/gallery" component={ Gallery } />
