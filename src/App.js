@@ -20,8 +20,11 @@ import { Progress } from './routes/Progress';
 import { Error404 } from './routes/Error404';
 // import { About } from './routes/[...]';
 
+import { Logo } from './components/Logo';
+import { Title } from './components/Title';
 import { NavMenu } from './components/NavMenu';
 import { NavMenuItem } from './components/NavMenuItem';
+import { ReactDOM } from 'react-dom';
 
 /*
 TODO - Fix routing
@@ -52,14 +55,19 @@ function App() {
           <li><Link to="/amga-progress">AMGA Progress</Link></li>
         </ul>
       </nav> */}
-      <NavMenu>
-        <NavMenuItem><Link to="/">Home</Link></NavMenuItem>
-        <NavMenuItem><Link to="/about">About</Link></NavMenuItem>
-        <NavMenuItem><Link to="/list">List</Link></NavMenuItem>
-        <NavMenuItem><Link to="/graph">Graph</Link></NavMenuItem>
-        <NavMenuItem><Link to="/gallery">Gallery</Link></NavMenuItem>
-        <NavMenuItem><Link to="/amga-progress">AMGA Progress</Link></NavMenuItem>
-      </NavMenu>
+      <header>
+        <Logo />
+        <Title />
+        <NavMenu>
+          <NavMenuItem><Link to="/">Home</Link></NavMenuItem>
+          <NavMenuItem><Link to="/about">About</Link></NavMenuItem>
+          <NavMenuItem><Link to="/list">List</Link></NavMenuItem>
+          <NavMenuItem><Link to="/graph">Graph</Link></NavMenuItem>
+          <NavMenuItem><Link to="/gallery">Gallery</Link></NavMenuItem>
+          <NavMenuItem><Link to="/amga-progress">AMGA Progress</Link></NavMenuItem>
+        </NavMenu>
+      </header>
+      
 
       <Switch>
         <Route exact path="/" component={ Home }/>
