@@ -4,7 +4,7 @@ import { device } from './../breakpoints/breakpoints';
 
 // What am I trying to do with this?
 // OK... So... This component is the styled <nav></nav> with styled <ul></ul> inside it, which will be used to wrap the children list elements, which will also be a styled component, <NavMenuItem/>. In my use case I will not need anything else here. This is just a place to do styling instead of in CSS.
-// I'm thinking of the overall positioning being done outside in App.css or something...
+// I'm thinking of the overall positioning
 
 export const NavMenu = (props) => {
     const StyledNav = styled.nav`

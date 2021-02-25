@@ -28,3 +28,5 @@ yarn-debug.log*
 yarn-error.log*
 
 CRA_README.md
+.vscode/settings.json
+.gitignore
