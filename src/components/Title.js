@@ -5,6 +5,6 @@ export const Title = () => {
     const StyledTitle = styled.h1``;
     
     return (
-        <StyledTitle>Title of The Page</StyledTitle>
+        <StyledTitle>JP's Trad Leads</StyledTitle>
     )
 }

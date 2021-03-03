@@ -71,11 +71,11 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={ Home }/>
-        <Route exact path="/about" component={ About } />
-        <Route exact path="/list" component={ List } />
-        <Route exact path="/graph" component={ Graph } />
-        <Route exact path="/gallery" component={ Gallery } />
-        <Route exact path="/amga-progress" component={ Progress } />
+        <Route path="/about" component={ About } />
+        <Route path="/list" component={ List } />
+        <Route path="/graph" component={ Graph } />
+        <Route path="/gallery" component={ Gallery } />
+        <Route path="/amga-progress" component={ Progress } />
         <Route component={ Error404 } />
       </Switch>
     </BrowserRouter>

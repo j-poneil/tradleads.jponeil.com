@@ -3,33 +3,48 @@ import styled from 'styled-components';
 
 export const Logo = () => {
     const StyledLogo = styled.div`
+        svg {
+            // height: 250px;
+            // width: 250px;
+            // width: 100%;
+            // height: 100%;
+            border: 2px solid white;
+            padding: 10px;
+        }
         line {
-            display: block !important;
+            // display: block !important;
+            // visibility: visible;
         }
     `;
 
     // fn to switch out the logo image with a svg one, called if there is an error with the img source
     // I kinda want to put a bad source path on purpose in production to force the fallback to this SVG
     // ! The svg is not currently displaying correctly for some reason at one point I got it to show up while messing with the code in chrome, but i have no idea why i can't get it to work again.
+    // <rect x="0" y="0" width="100%" height="100%"/>
+    // ... If I put the svg inside of this, it shows up...
     const swapSvgForLogoImg = () => {
         let placeholder = document.getElementById('placeholder');
 
-        let svg = document.createElement('svg');
-        svg.setAttribute('width', 250);
-        svg.setAttribute('height', 250);
-        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        let rectEl = document.createElement('rect');
+        rectEl.setAttribute('width', `100%`);
+        rectEl.setAttribute('height', `100%`);
+        rectEl.setAttribute('x', 0);
+        rectEl.setAttribute('y', 0);
+
+        let svgEl = document.createElement('svg');
+        // svg.setAttribute('width', 250);
+        svgEl.setAttribute('width', `100%`);
+        svgEl.setAttribute('height', `100%`);
+        // viewBox="0 0 100 100"
+        svgEl.setAttribute('viewBox', `0 0 250 250`);
+        svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
         // child of svg
-        // ! but why? why not have everything a direct child of svg???
-        let g = document.createElement('g');
-        svg.appendChild(g);
-
-        // child of g
         let svgTitle = document.createElement('title');
         let titleText = document.createTextNode('My Logo: a slightly tilted hourglass');
         svgTitle.appendChild(titleText);
 
-        // more children of g
+        // more children of svg
         let lineOne = document.createElement('line');
         lineOne.setAttribute('stroke-width', 26);
         lineOne.setAttribute('id', 'svg_1');
@@ -38,7 +53,7 @@ export const Logo = () => {
         lineOne.setAttribute('y1', 90.5);
         lineOne.setAttribute('x1', 26);
         lineOne.setAttribute('stroke', '#FFF');
-        lineOne.setAttribute('style', 'display: block; visibility: visible;');
+        // lineOne.setAttribute('style', 'display: block; visibility: visible;');
 
         let lineTwo = document.createElement('line');
         lineTwo.setAttribute('stroke-width', 26);
@@ -68,15 +83,19 @@ export const Logo = () => {
         lineFour.setAttribute('stroke', '#FFF');
         lineFour.setAttribute('transform', 'rotate(3 127 130)');
 
-        // append all children to g
-        //...
-        g.appendChild(svgTitle);
-        g.appendChild(lineOne);
-        g.appendChild(lineTwo);
-        g.appendChild(lineThree);
-        g.appendChild(lineFour);
+        // append all children to svg
+        svgEl.appendChild(svgTitle);
+        svgEl.appendChild(lineOne);
+        svgEl.appendChild(lineTwo);
+        svgEl.appendChild(lineThree);
+        svgEl.appendChild(lineFour);
 
-        placeholder.insertAdjacentElement('afterend', svg);
+        // append svgEl to rectEl
+        rectEl.appendChild(svgEl);
+        
+
+        // placeholder.insertAdjacentElement('afterend', svgEl);
+        placeholder.insertAdjacentElement('beforeEnd', rectEl);
 
         // remove the image, which is now replaced with a logo
         let imgRef = document.getElementById('logo-img');

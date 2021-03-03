@@ -7,8 +7,11 @@ import React, { useState, useEffect } from 'react';
 ... when it should re-render only when whichTable changes
 
 // TODO - some change on hover on table rows
+TODO - CSS - Make it more obvious that you can click on some of the table headers to change the sorting method
+    * Hand pointer
+    * OUT THERE - Animate the up/down arrow thing, or maybe have it change color or grow in size w/o affecting the layout
 TODO - CSS - Make the table caption more prominant
-    ... temp fix max it a H3
+    ... temp fix make it a H3
 TODO - SQL/PHP - Fully implement the sorting on things it makes sense to do so on (new SQL queries, associated switch statements)
 // TODO - Make links open a new tab
 TODO - CSS/JSX - Make table header stay at top of screen while the rest of the table scrolls down
@@ -16,6 +19,7 @@ TODO - CSS/JSX - Make table header stay at top of screen while the rest of the t
 TODO - JSX - Don't show diff_sort
 TODO - JSX - remove on_mp, change link th to MP ?... if it has a link its on MP, period
 TODO - Google Sheets/SQL - update list on SQL server so more data to work with...
+    ! Out there - Don't use SQL server side at all, just use Google Sheets... apparently this is a thing... It would make sense for my use case... but also removes the PHP and SQL queries... so can't show those technologies as part of the project... but I guess that might be fine too.
 
 ! Out there
 TODO - CSS/JSX - Click on a table row to get a pop up modal and darken/blur the background, All text larger and more readable, more digestable formatting, maybe even some pictures if they exist. If I do something like this, should probably have a "has pics" symbol or something in the table
