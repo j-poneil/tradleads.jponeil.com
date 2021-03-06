@@ -28,8 +28,8 @@ import { ReactDOM } from 'react-dom';
 
 /*
 TODO - Fix routing
-... if I try to go directly to tradleads.jponeil.com/list without doing so from / it gives 404
-TODO - Replace the ugly CSS that I initially used on purpose, maybe do that after I have worked on the other routes/pages/components first
+  ... if I try to go directly to tradleads.jponeil.com/list without doing so from / it gives 404
+  ... but maybe this is just a flaw in react-router... i can't remember.
 
 TODO - Add Google Charts
   TODO - Experiment with other charts...
@@ -45,16 +45,6 @@ TODO - MAKE EVERTYHING RESPONSIVE, EVERYTHING. Within reason.
 function App() {
   return (
     <BrowserRouter>
-      {/* <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/list">List</Link></li>
-          <li><Link to="/graph">Graph</Link></li>
-          <li><Link to="/gallery">Gallery</Link></li>
-          <li><Link to="/amga-progress">AMGA Progress</Link></li>
-        </ul>
-      </nav> */}
       <header>
         <Logo />
         <Title />

@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 // react-google-charts.com
 import { Chart } from "react-google-charts";
+import styled from 'styled-components';
+import { device } from '../breakpoints/breakpoints';
 
 
 

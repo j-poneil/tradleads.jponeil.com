@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import { device } from '../breakpoints/breakpoints';
 
 export const About = () => {
+    const SP = styled.p``;
+    const SH1 = styled.h1``;
+    const SH3 = styled.h3``;
+    const SH4 = styled.h4``;
+    const SUL = styled.ul``;
+    const SLI = styled.li``;
     return (
         <div>
             <h1>My Trad Lead Statistics</h1>

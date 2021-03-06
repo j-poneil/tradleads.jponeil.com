@@ -21,30 +21,33 @@ export const Logo = () => {
     // I kinda want to put a bad source path on purpose in production to force the fallback to this SVG
     // ! The svg is not currently displaying correctly for some reason at one point I got it to show up while messing with the code in chrome, but i have no idea why i can't get it to work again.
     // <rect x="0" y="0" width="100%" height="100%"/>
-    // ... If I put the svg inside of this, it shows up...
+    // ... If I put the svg inside of this, it shows up... well did once.
     const swapSvgForLogoImg = () => {
         let placeholder = document.getElementById('placeholder');
 
         let rectEl = document.createElement('rect');
-        rectEl.setAttribute('width', `100%`);
-        rectEl.setAttribute('height', `100%`);
         rectEl.setAttribute('x', 0);
         rectEl.setAttribute('y', 0);
+        // rectEl.setAttribute('width', `100%`);
+        // rectEl.setAttribute('height', `100%`);
+        rectEl.setAttribute('width', 250);
+        rectEl.setAttribute('height', 250);
+        
 
         let svgEl = document.createElement('svg');
         // svg.setAttribute('width', 250);
-        svgEl.setAttribute('width', `100%`);
-        svgEl.setAttribute('height', `100%`);
         // viewBox="0 0 100 100"
         svgEl.setAttribute('viewBox', `0 0 250 250`);
+        // svgEl.setAttribute('width', `100%`);
+        // svgEl.setAttribute('height', `100%`);
         svgEl.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
-        // child of svg
+        // child of svgEl
         let svgTitle = document.createElement('title');
         let titleText = document.createTextNode('My Logo: a slightly tilted hourglass');
         svgTitle.appendChild(titleText);
 
-        // more children of svg
+        // more children of svgEl
         let lineOne = document.createElement('line');
         lineOne.setAttribute('stroke-width', 26);
         lineOne.setAttribute('id', 'svg_1');
@@ -83,7 +86,7 @@ export const Logo = () => {
         lineFour.setAttribute('stroke', '#FFF');
         lineFour.setAttribute('transform', 'rotate(3 127 130)');
 
-        // append all children to svg
+        // append all children to svgEl
         svgEl.appendChild(svgTitle);
         svgEl.appendChild(lineOne);
         svgEl.appendChild(lineTwo);
@@ -91,11 +94,11 @@ export const Logo = () => {
         svgEl.appendChild(lineFour);
 
         // append svgEl to rectEl
-        rectEl.appendChild(svgEl);
+        // rectEl.appendChild(svgEl);
         
 
-        // placeholder.insertAdjacentElement('afterend', svgEl);
-        placeholder.insertAdjacentElement('beforeEnd', rectEl);
+        placeholder.insertAdjacentElement('afterend', svgEl);
+        // placeholder.insertAdjacentElement('beforeEnd', rectEl);
 
         // remove the image, which is now replaced with a logo
         let imgRef = document.getElementById('logo-img');

@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import { device } from '../breakpoints/breakpoints';
 
 export const Gallery = () => {
     return (

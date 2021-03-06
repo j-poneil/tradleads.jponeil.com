@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { device } from '../breakpoints/breakpoints';
 
 /*
 * The problem I was having, well, the main problem... is that the data I get back from the GET request to the PHP to the SQL server... ends up on this.responseText... AS A STRING. All I needed to do was wrap it with JSON.parse()

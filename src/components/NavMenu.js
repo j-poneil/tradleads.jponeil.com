@@ -7,15 +7,9 @@ import { device } from './../breakpoints/breakpoints';
 // I'm thinking of the overall positioning
 
 export const NavMenu = (props) => {
-    const StyledNav = styled.nav`
-        /* temp border*/
-        border: 2px solid white; 
-    `;
+    const StyledNav = styled.nav``;
 
-    const StyledUl = styled.ul`
-        /* temp border*/
-        border: 2px solid pink;
-    `;
+    const StyledUl = styled.ul``;
 
     return (
         <StyledNav>
