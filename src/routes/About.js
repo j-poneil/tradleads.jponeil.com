@@ -3,6 +3,36 @@ import styled from 'styled-components';
 import { device } from '../breakpoints/breakpoints';
 
 export const About = () => {
+    // Setting the div containing all the content to be different widths for different screens, so text wont touch the very edge and text will be grouped together closer to the middle of the screen for large screens... though maybe in the future I'd switch to a different way to display on large screens, maybe 2 columns?
+    // TODO - Why isn't this margin-left / right working here... but works when putting it in manually in chrome dev tools?
+    const SDIV = styled.div`
+        div {
+            @media ${device.mobile_S} {
+                margin-left: 3vw;
+                margin-right: 3vw;
+            };
+            @media ${device.mobile_L} {
+                margin-left: 5vw;
+                margin-right: 5vw;
+            };
+            @media ${device.tablet} {
+                margin-left: 8vw;
+                margin-right: 8vw;
+            };
+            @media ${device.laptop} {
+                margin-left: 10vw;
+                margin-right: 10vw;
+            };
+            @media ${device.laptop_L} {
+                margin-left: 15vw;
+                margin-right: 15vw;
+            };
+            @media ${device.desktop} {
+                margin-left: 25vw;
+                margin-right: 25vw;
+            };
+        }
+    `;
     const SP = styled.p``;
     const SH1 = styled.h1``;
     const SH3 = styled.h3``;
@@ -10,7 +40,7 @@ export const About = () => {
     const SUL = styled.ul``;
     const SLI = styled.li``;
     return (
-        <div>
+        <SDIV>
             <h1>My Trad Lead Statistics</h1>
 
             <p>Traditional Climbing (trad for short) is a style of rock climbing where one places pieces of protection such as nuts and camming devices. There is a whole lot more that could be explained, but it isn't important _here_.</p>
@@ -58,6 +88,6 @@ export const About = () => {
             <p>Most of what I have been coding with these days is either ES6/7 or React JSX. So this whole thing feels very weird and old, but I guess its good to revisit old projects sometimes and update them to what I'm currently using.</p>
 
             <p>There are more notes, particularly old ones going through more of how my process evolved and such, some of them are in: 'old notes on the project.txt'. Other notes are interspersed in the main files of the project and may be cleaned up or removed entirely over time... Especially now that I'm starting fresh.</p>
-        </div>
+        </SDIV>
     )
 }

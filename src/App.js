@@ -24,6 +24,7 @@ import { Logo } from './components/Logo';
 import { Title } from './components/Title';
 import { NavMenu } from './components/NavMenu';
 import { NavMenuItem } from './components/NavMenuItem';
+// ! Do i need ReactDOM ? Its huge.
 import { ReactDOM } from 'react-dom';
 
 /*
