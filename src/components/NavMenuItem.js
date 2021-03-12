@@ -19,6 +19,8 @@ import { device } from '../breakpoints/breakpoints';
 
 
 export const NavMenuItem = (props) => {
+    let mobileNavOpen = this.props.mobileNav;
+
     const StyledLi = styled.li`
         /* --clr-body: #AAA; */
         --clr-primary: #FFF;
