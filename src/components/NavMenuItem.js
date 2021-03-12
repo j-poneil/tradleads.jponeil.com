@@ -17,48 +17,48 @@ import { device } from '../breakpoints/breakpoints';
 
 // turning nav into a dropdown on smaller screens would be desirable
 
+const StyledLi = styled.li`
+    /* --clr-body: #AAA; */
+    --clr-primary: #FFF;
+    --clr-secondary: #AAA;
+    --clr-bg: #AAA;
+    @media ${device.mobile_S} {};
+    @media ${device.mobile_L} {};
+    @media ${device.tablet} {};
+    @media ${device.laptop} {};
+    @media ${device.laptop_L} {};
+    @media ${device.desktop} {};
+    display: inline-block;
+    margin: 1rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 2rem;
+    color: var(--clr-secondary);
+    a {
+        color: var(--clr-secondary);
+        text-decoration: none;
+        :hover {
+            text-decoration: underline;
+            color: var(--clr-primary) !important;
+        }
+        :active {
+            color: var(--clr-primary);
+        }
+        :visited {
+            color: var(--clr-secondary);
+        }
+        :focus {
+            outline: 2px solid #FFF;
+            /* outline-offset: 1px; */
+            text-decoration: none;
+            color: var(--clr-primary);
+        }
+        transition: all 0.3s ease-in-out;
+    };
+`;
+
 
 export const NavMenuItem = (props) => {
-    let mobileNavOpen = this.props.mobileNav;
-
-    const StyledLi = styled.li`
-        /* --clr-body: #AAA; */
-        --clr-primary: #FFF;
-        --clr-secondary: #AAA;
-        --clr-bg: #AAA;
-        @media ${device.mobile_S} {};
-        @media ${device.mobile_L} {};
-        @media ${device.tablet} {};
-        @media ${device.laptop} {};
-        @media ${device.laptop_L} {};
-        @media ${device.desktop} {};
-        display: inline-block;
-        margin: 1rem;
-        font-family: Helvetica, sans-serif;
-        font-size: 2rem;
-        color: var(--clr-secondary);
-        a {
-            color: var(--clr-secondary);
-            text-decoration: none;
-            :hover {
-                text-decoration: underline;
-                color: var(--clr-primary) !important;
-            }
-            :active {
-                color: var(--clr-primary);
-            }
-            :visited {
-                color: var(--clr-secondary);
-            }
-            :focus {
-                outline: 2px solid #FFF;
-                /* outline-offset: 1px; */
-                text-decoration: none;
-                color: var(--clr-primary);
-            }
-            transition: all 0.3s ease-in-out;
-        };
-    `;
+    let mobileNavOpen = props.mobileNav;
 
     return (
         <StyledLi>

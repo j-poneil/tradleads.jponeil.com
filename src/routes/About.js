@@ -2,43 +2,44 @@ import React from 'react';
 import styled from 'styled-components';
 import { device } from '../breakpoints/breakpoints';
 
+// Setting the div containing all the content to be different widths for different screens, so text wont touch the very edge and text will be grouped together closer to the middle of the screen for large screens... though maybe in the future I'd switch to a different way to display on large screens, maybe 2 columns?
+// TODO - Why isn't this margin-left / right working here... but works when putting it in manually in chrome dev tools?
+const SDIV = styled.div`
+    div {
+        @media ${device.mobile_S} {
+            margin-left: 3vw;
+            margin-right: 3vw;
+        };
+        @media ${device.mobile_L} {
+            margin-left: 5vw;
+            margin-right: 5vw;
+        };
+        @media ${device.tablet} {
+            margin-left: 8vw;
+            margin-right: 8vw;
+        };
+        @media ${device.laptop} {
+            margin-left: 10vw;
+            margin-right: 10vw;
+        };
+        @media ${device.laptop_L} {
+            margin-left: 15vw;
+            margin-right: 15vw;
+        };
+        @media ${device.desktop} {
+            margin-left: 25vw;
+            margin-right: 25vw;
+        };
+    }
+`;
+const SP = styled.p``;
+const SH1 = styled.h1``;
+const SH3 = styled.h3``;
+const SH4 = styled.h4``;
+const SUL = styled.ul``;
+const SLI = styled.li``;
+
 export const About = () => {
-    // Setting the div containing all the content to be different widths for different screens, so text wont touch the very edge and text will be grouped together closer to the middle of the screen for large screens... though maybe in the future I'd switch to a different way to display on large screens, maybe 2 columns?
-    // TODO - Why isn't this margin-left / right working here... but works when putting it in manually in chrome dev tools?
-    const SDIV = styled.div`
-        div {
-            @media ${device.mobile_S} {
-                margin-left: 3vw;
-                margin-right: 3vw;
-            };
-            @media ${device.mobile_L} {
-                margin-left: 5vw;
-                margin-right: 5vw;
-            };
-            @media ${device.tablet} {
-                margin-left: 8vw;
-                margin-right: 8vw;
-            };
-            @media ${device.laptop} {
-                margin-left: 10vw;
-                margin-right: 10vw;
-            };
-            @media ${device.laptop_L} {
-                margin-left: 15vw;
-                margin-right: 15vw;
-            };
-            @media ${device.desktop} {
-                margin-left: 25vw;
-                margin-right: 25vw;
-            };
-        }
-    `;
-    const SP = styled.p``;
-    const SH1 = styled.h1``;
-    const SH3 = styled.h3``;
-    const SH4 = styled.h4``;
-    const SUL = styled.ul``;
-    const SLI = styled.li``;
     return (
         <SDIV>
             <h1>My Trad Lead Statistics</h1>

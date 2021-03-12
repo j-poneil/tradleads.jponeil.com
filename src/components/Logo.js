@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Logo = () => {
-    const StyledLogo = styled.div`
-        svg {
-            // height: 250px;
-            // width: 250px;
-            // width: 100%;
-            // height: 100%;
-            border: 2px solid white;
-            padding: 10px;
-        }
-        line {
-            // display: block !important;
-            // visibility: visible;
-        }
-    `;
+const StyledLogo = styled.div`
+    svg {
+        // height: 250px;
+        // width: 250px;
+        // width: 100%;
+        // height: 100%;
+        border: 2px solid white;
+        padding: 10px;
+    }
+    line {
+        // display: block !important;
+        // visibility: visible;
+    }
+`;
 
+export const Logo = () => {
     // fn to switch out the logo image with a svg one, called if there is an error with the img source
     // I kinda want to put a bad source path on purpose in production to force the fallback to this SVG
     // ! The svg is not currently displaying correctly for some reason at one point I got it to show up while messing with the code in chrome, but i have no idea why i can't get it to work again.
