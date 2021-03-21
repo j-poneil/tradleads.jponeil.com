@@ -54,7 +54,45 @@ export const Gallery = () => {
 
 
         <div>
-            Gallery...
+            <div className="column"><img src="../../img/photos/00.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/00.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/00.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/00.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/01.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/02.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/03.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/04.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/05.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/06.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/07.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/08.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/09.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/10.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/11.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/12.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/13.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/14.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/15.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/16.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/17.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/18.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/19.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/20.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/21.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/22.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/23.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/24.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/25.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/26.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/27.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/28.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/29.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/30.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/31.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/32.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/33.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/34.jpg" alt="" className="thumbnail" /></div>
+            <div className="column"><img src="../../img/photos/35.jpg" alt="" className="thumbnail" /></div>
         </div>
     )
 }
