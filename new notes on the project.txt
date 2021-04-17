@@ -6,3 +6,5 @@ THEN
 make sure to copy the needed php files over
 ...
 then it should work!
+
+This is some new activity on this file.
